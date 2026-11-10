@@ -1,0 +1,56 @@
+:root{--bg1:#ffe9f1;--bg2:#ffbfd8;--ink:#6b1d3f;--pink:#ff4f8f;--soft:#ff9fc4;--card:rgba(255,255,255,.78);--bear:#e3a073;--bearlt:#f6d3b3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg1:#3a1228;--bg2:#5e1c40;--ink:#ffe3ee;--pink:#ff6aa2;--soft:#d9739f;--card:rgba(70,22,50,.75)}}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed;background-color:var(--bg1);color:var(--ink);font-family:"Quicksand",system-ui,sans-serif;font-weight:500;overflow-x:hidden}
+.app{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px 16px 48px;overflow:hidden}
+.floaters span{position:fixed;bottom:-60px;opacity:0;animation:rise linear infinite;pointer-events:none}
+@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.75}100%{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+.bow{position:fixed;top:calc(env(safe-area-inset-top,0px) + 6px);width:84px;height:84px;transform-origin:50% 0;animation:sway 4s ease-in-out infinite;z-index:1;pointer-events:none}
+.bow.l{left:6px}.bow.r{right:6px;animation-delay:-2s;scale:-1 1}
+@keyframes sway{0%,100%{rotate:-6deg}50%{rotate:6deg}}
+.stage{position:relative;z-index:2;width:100%;max-width:440px;text-align:center;background:var(--card);backdrop-filter:blur(6px);border-radius:36px;padding:28px 22px 30px;box-shadow:0 18px 50px rgba(255,79,143,.28);border:3px dashed var(--soft);animation:pop .7s cubic-bezier(.2,1.5,.4,1)}
+@keyframes pop{from{transform:scale(.6) rotate(-4deg);opacity:0}to{transform:none;opacity:1}}
+.fade{animation:pop .5s both}
+h1{font-family:"Caveat",cursive;font-size:clamp(42px,12vw,60px);line-height:1;margin:6px 0;color:var(--pink)}
+p{font-size:18px;line-height:1.55;margin:10px auto;max-width:34ch}
+.small{font-size:15px;opacity:.85}
+.btn{font-family:inherit;font-weight:600;font-size:17px;border:0;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ff6aa2,#ff3d85);padding:13px 26px;border-radius:999px;margin:8px 6px 0;box-shadow:0 8px 0 #d62a6b,0 12px 22px rgba(214,42,107,.35);transition:transform .15s,box-shadow .15s}
+.btn:active{transform:translateY(6px);box-shadow:0 2px 0 #d62a6b}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:2px solid var(--soft)}
+.btn:focus-visible,.star:focus-visible,.candle:focus-visible,.flower:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.bear{width:220px;max-width:70%;display:block;margin:0 auto;animation:bob 3s ease-in-out infinite;cursor:pointer;overflow:visible}
+.bear.hug{animation:squish .6s ease}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes squish{0%{transform:scale(1)}30%{transform:scale(1.12,.88)}60%{transform:scale(.94,1.08)}100%{transform:scale(1)}}
+.star{transform-box:fill-box;transform-origin:center;animation:beat 1.1s ease-in-out infinite;cursor:pointer}
+@keyframes beat{0%,100%{transform:scale(1) rotate(0)}30%{transform:scale(1.18) rotate(8deg)}60%{transform:scale(.98) rotate(-4deg)}}
+.tear{animation:tear 2.4s ease-in infinite}
+@keyframes tear{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(26px);opacity:0}}
+.msg{min-height:150px;display:flex;align-items:center;justify-content:center}
+.msg p{font-size:20px}
+.dots{display:flex;gap:8px;justify-content:center;margin:6px 0 4px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--soft);opacity:.45;transition:.3s}
+.dots i.on{background:var(--pink);opacity:1;transform:scale(1.35)}
+.flowers{display:flex;gap:6px;justify-content:center;margin:10px 0}
+.flower{flex:1;max-width:120px;background:none;border:0;cursor:pointer;color:var(--ink);font:inherit;font-size:14px;font-weight:600;padding:4px;border-radius:16px}
+.flower svg{width:100%;display:block}
+.flower .petals{transform-box:fill-box;transform-origin:center;transform:scale(.1) rotate(-90deg);opacity:0;transition:transform .8s cubic-bezier(.2,1.5,.4,1),opacity .3s}
+.flower.bloomed .petals{transform:scale(1) rotate(0);opacity:1}
+.flower .bud{transition:opacity .3s}.flower.bloomed .bud{opacity:0}
+.flower:not(.bloomed) svg{animation:bob 2.2s ease-in-out infinite}
+.cake{width:250px;max-width:80%;display:block;margin:0 auto}
+.candle{cursor:pointer}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .35s ease-in-out infinite alternate}
+@keyframes flick{from{transform:scale(1) rotate(-4deg)}to{transform:scale(1.15,1.25) rotate(4deg)}}
+.smoke{animation:smoke 1.6s ease-out forwards}
+@keyframes smoke{from{transform:translateY(0);opacity:.8}to{transform:translateY(-34px);opacity:0}}
+.progress{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);left:0;right:0;display:flex;gap:8px;justify-content:center;z-index:3;pointer-events:none}
+.progress i{width:26px;height:6px;border-radius:99px;background:var(--soft);opacity:.4;transition:.4s}
+.progress i.on{background:var(--pink);opacity:1}
+.conf{position:fixed;top:-20px;width:10px;height:16px;border-radius:2px;z-index:5;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(720deg)}}
+.tap{position:fixed;z-index:6;font-size:26px;pointer-events:none;animation:tapup 1s ease-out forwards;translate:-50% -50%}
+@keyframes tapup{from{transform:translateY(0) scale(.6);opacity:1}to{transform:translateY(-90px) scale(1.5);opacity:0}}
+.sig{font-family:"Caveat",cursive;font-size:30px;color:var(--pink);margin-top:10px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.floaters{display:none}}
